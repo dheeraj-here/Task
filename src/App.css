@@ -1,0 +1,22 @@
+body {
+  margin-top: 40px;
+  padding: 0 10px;
+}
+
+#top {
+  width: 250px;
+  margin: 0 auto;
+  display: flex;
+  
+}
+
+#form{
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+#inp{
+  margin-right: 10px;
+}
