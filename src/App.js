@@ -2,8 +2,8 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
-  const [sent, setSent] = useState('')
-  const [show, setShow] = useState('');
+  const [sent, setSent] = useState(''); // For input purpose
+  const [show, setShow] = useState(''); // For showing the result sentence
 
   function handleInp(e) {
     setSent(e.target.value)
@@ -14,11 +14,11 @@ function App() {
   }
 
   function handleSubmit(e) {
-    e.preventDefault(); // For preventing the form from refreshng after clicking submit
+    e.preventDefault(); // For preventing the form from refreshng after submitting form
     console.log(sent);
-
-    //Reverse sentence
     var ans = "";
+
+    // For Reversing the sentence
     // console.log("For loop Start");
     // console.log(sent.length);
     // var space = 0;
@@ -34,20 +34,20 @@ function App() {
     //   console.log('Ans', ans);
     // }
 
-    // Reverse Order of words but normal sentence
+
+    // For Reverse Order of words but normal sentence
 
     var word = ""; // taking for each word
     var space = 0;
     for (let i = 0; i < sent.length; i++) {
       if (sent[i] === ':' || sent[i] === ';' || sent[i] === '.' || sent[i] === ',' || sent[i] === '!') {
-        ans += reverseString(word);
+        ans += reverseString(word); // adding reverse word
 
         if (ans.charAt(ans.length - 1) === ' ') {
-          console.log("Yes we found");
-          ans = ans.slice(0, -1);
+          ans = ans.slice(0, -1); // For adding punctuation without any space
         }
         ans += sent[i];
-        word = "";
+        word = ""; // Now empty the word
         space = 0;
       }
       else if (sent[i] !== ' ') {
@@ -61,16 +61,16 @@ function App() {
         space += 1;
       }
     }
+
+    // Now check if any word is remaining after completion of loop
     if (ans.charAt(ans.length - 1) === ' ') {
-      console.log("Yes we found");
       ans = ans.slice(0, -1);
     }
     ans += reverseString(word);
 
-    ans = ans.trim();
-    console.log(ans.length, ans);
-    setShow(ans)
-    console.log(show.length, show);
+
+    ans = ans.trim(); // removing leading and trailing spaces from sentece
+    setShow(ans); 
   }
   return (
     <div id='top'>
