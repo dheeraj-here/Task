@@ -18,55 +18,32 @@ function App() {
     console.log(sent);
     var ans = "";
 
-    // For Reversing the sentence
-    // console.log("For loop Start");
-    // console.log(sent.length);
-    // var space = 0;
-    // for (let i = sent.length - 1; i >= 0; i--) {
-    //   if (sent[i] === ' ' && space === 0) {
-    //     space += 1;
-    //     ans += sent[i];
-    //   }
-    //   else if (sent[i] !== ' ') {
-    //     space = 0;
-    //     ans += sent[i];
-    //   }
-    //   console.log('Ans', ans);
-    // }
-
-
-    // For Reverse Order of words but normal sentence
 
     var word = ""; // taking for each word
     var space = 0;
-    for (let i = 0; i < sent.length; i++) {
-      if (sent[i] === ':' || sent[i] === ';' || sent[i] === '.' || sent[i] === ',' || sent[i] === '!') {
-        ans += reverseString(word); // adding reverse word
-
-        if (ans.charAt(ans.length - 1) === ' ') {
-          ans = ans.slice(0, -1); // For adding punctuation without any space
-        }
-        ans += sent[i];
-        word = ""; // Now empty the word
-        space = 0;
+    for (let i = sent.length-1; i >= 0; i--) {
+      if(sent[i] === '.' || sent[i] === ',' || sent[i] === '?' || sent[i] === '!' || sent[i] === "'" || sent[i] === '-' || sent[i] === '_' || sent[i] === ';' || sent[i] === ':'){
+        ans+= reverseString(word);
+        ans+=sent[i];
+        word = "";
       }
-      else if (sent[i] !== ' ') {
+      else if(sent[i] !== ' '){
         word += sent[i];
         space = 0;
       }
-      else if (sent[i] === ' ' && space === 0) {
+      else{
         ans += reverseString(word);
-        ans += " ";
-        word = ""; // Now empty the word
-        space += 1;
+        if(space === 0){
+          ans+= ' ';
+          space+=1;
+        }
+        word = ""
       }
+     
     }
 
     // Now check if any word is remaining after completion of loop
-    if (ans.charAt(ans.length - 1) === ' ') {
-      ans = ans.slice(0, -1);
-    }
-    ans += reverseString(word);
+    ans+=reverseString(word)
 
 
     ans = ans.trim(); // removing leading and trailing spaces from sentece
